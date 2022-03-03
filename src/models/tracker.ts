@@ -14,7 +14,7 @@ const TrackerSchema = new Schema({
 
 // https://github.com/dherault/serverless-offline/issues/258#issuecomment-501000703
 let tracker;
-const collection = 'Tracker';
+const collection = process.env.MONGO_COLLECTION;
 
 try {
     tracker = mongoose.connection.model(collection);
