@@ -11,6 +11,11 @@ export default function Index() {
     if (error) return <div>Failed to load data</div>;
     if (!data) return <div>Loading...</div>;
 
+    const removeEntry = async (e, _id) => {
+        await axios.delete(`/api/tracker/${_id}`);
+        mutate();
+    };
+
     const newFeed = async () => {
         await axios.post('/api/tracker/new', { type: 'Feed' });
         mutate();
@@ -86,10 +91,20 @@ export default function Index() {
                                     `${new Date(date).toLocaleDateString()} ${new Date(date).toLocaleTimeString()}`,
                             },
                             {
-                                title: '',
+                                title: 'Time since',
                                 dataIndex: 'time',
                                 key: 'time',
                                 render: (date: string) => ` ${timeAgo(date)}`,
+                            },
+                            {
+                                title: 'Remove',
+                                dataIndex: '_id',
+                                key: '_id',
+                                render: (_id: string) => (
+                                    <Button danger onClick={(e) => removeEntry(e, _id)}>
+                                        Remove
+                                    </Button>
+                                ),
                             },
                         ]}
                         pagination={false}
