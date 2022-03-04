@@ -16,58 +16,41 @@ export default function Index() {
         mutate();
     };
 
-    const newFeed = async () => {
-        await axios.post('/api/tracker/new', { type: 'Feed' });
-        mutate();
-    };
-
-    const newSleep = async () => {
-        await axios.post('/api/tracker/new', { type: 'Sleep' });
-        mutate();
-    };
-
-    const newWake = async () => {
-        await axios.post('/api/tracker/new', { type: 'Wake' });
-        mutate();
-    };
-
-    const newPee = async () => {
-        await axios.post('/api/tracker/new', { type: 'Pee' });
-        mutate();
-    };
-
-    const newPoo = async () => {
-        await axios.post('/api/tracker/new', { type: 'Poo' });
+    const addEntry = async (type) => {
+        await axios.post('/api/tracker/new', { type: type });
         mutate();
     };
 
     return (
         <>
             <Row justify='center' gutter={[16, 16]}>
-                <Col span={24}>
-                    {' '}
-                    <Button type='primary' size='large' block onClick={newFeed}>
+                <Col span={12}>
+                    <Button type='primary' size='large' block onClick={() => addEntry('Feed')}>
                         Feed
                     </Button>
                 </Col>
                 <Col span={12}>
-                    <Button type='primary' size='large' block onClick={newSleep}>
+                    <Button type='primary' size='large' block onClick={() => addEntry('Pump')}>
+                        Pump
+                    </Button>
+                </Col>
+                <Col span={12}>
+                    <Button type='primary' size='large' block onClick={() => addEntry('Sleep')}>
                         Sleep
                     </Button>
                 </Col>
                 <Col span={12}>
-                    {' '}
-                    <Button type='primary' size='large' block onClick={newWake}>
+                    <Button type='primary' size='large' block onClick={() => addEntry('Wake')}>
                         Wake
                     </Button>
                 </Col>
                 <Col span={12}>
-                    <Button type='primary' size='large' block onClick={newPee}>
+                    <Button type='primary' size='large' block onClick={() => addEntry('Pee')}>
                         Pee
                     </Button>
-                </Col>{' '}
+                </Col>
                 <Col span={12}>
-                    <Button type='primary' size='large' block onClick={newPoo}>
+                    <Button type='primary' size='large' block onClick={() => addEntry('Poo')}>
                         Poo
                     </Button>
                 </Col>
@@ -107,7 +90,6 @@ export default function Index() {
                                 ),
                             },
                         ]}
-                        pagination={false}
                     />
                 </Col>
             </Row>
