@@ -12,8 +12,10 @@ export default function Index() {
     if (!data) return <div>Loading...</div>;
 
     const removeEntry = async (e, _id) => {
-        await axios.delete(`/api/tracker/${_id}`);
-        mutate();
+        if (confirm('Are you sure you want to delete this entry?')) {
+            await axios.delete(`/api/tracker/${_id}`);
+            mutate();
+        }
     };
 
     const addEntry = async (type) => {
