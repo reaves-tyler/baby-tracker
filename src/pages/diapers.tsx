@@ -3,6 +3,7 @@ import { Row, Button, Table, Col } from 'antd';
 import axios from 'axios';
 import { timeAgo } from '../utils/time';
 import { SiteMenu } from '../components/SiteMenu';
+import { ItemTypes } from '../types/types';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -27,7 +28,9 @@ export default function Diapers() {
             <Row>
                 <Col span={24}>
                     <Table
-                        dataSource={data.filter((entry) => entry.type === 'Pee' || entry.type === 'Poo')}
+                        dataSource={data.filter(
+                            (entry) => entry.type === ItemTypes.Pee || entry.type === ItemTypes.Poo
+                        )}
                         columns={[
                             {
                                 title: 'Type',

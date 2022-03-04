@@ -3,6 +3,7 @@ import { Row, Button, Table, Col } from 'antd';
 import axios from 'axios';
 import { timeAgo } from '../utils/time';
 import { SiteMenu } from '../components/SiteMenu';
+import { ItemTypes } from '../types/types';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -30,33 +31,33 @@ export default function Index() {
             <br />
             <Row justify='center' gutter={[16, 16]}>
                 <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Feed')}>
-                        Feed
+                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Feed)}>
+                        {ItemTypes.Feed}
                     </Button>
                 </Col>
                 <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Pump')}>
-                        Pump
+                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Pump)}>
+                        {ItemTypes.Pump}
                     </Button>
                 </Col>
                 <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Sleep')}>
-                        Sleep
+                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Sleep)}>
+                        {ItemTypes.Sleep}
                     </Button>
                 </Col>
                 <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Wake')}>
-                        Wake
+                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Wake)}>
+                        {ItemTypes.Wake}
                     </Button>
                 </Col>
                 <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Pee')}>
-                        Pee
+                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Pee)}>
+                        {ItemTypes.Pee}
                     </Button>
                 </Col>
                 <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Poo')}>
-                        Poo
+                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Poo)}>
+                        {ItemTypes.Poo}
                     </Button>
                 </Col>
             </Row>
