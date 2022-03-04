@@ -52,7 +52,7 @@ export const timeAgo = (dateParam) => {
     const yesterday = new Date(today - DAY_IN_MS);
     const seconds = Math.round((today - date) / 1000);
     const minutes = Math.round(seconds / 60);
-    const hours = (seconds / 3600).toPrecision(1);
+    const hours = (seconds / 3600).toPrecision(2);
     const isToday = today.toDateString() === date.toDateString();
     const isYesterday = yesterday.toDateString() === date.toDateString();
     const isThisYear = today.getFullYear() === date.getFullYear();
