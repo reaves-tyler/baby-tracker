@@ -6,7 +6,7 @@ import { SiteMenu } from '../components/SiteMenu';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function Index() {
+export default function Food() {
     const { data, error, mutate } = useSwr('/api/tracker', fetcher);
 
     if (error) return <div>Failed to load data</div>;
@@ -19,52 +19,15 @@ export default function Index() {
         }
     };
 
-    const addEntry = async (type) => {
-        await axios.post('/api/tracker/new', { type: type });
-        mutate();
-    };
-
     return (
         <>
             <SiteMenu />
             <br />
-            <Row justify='center' gutter={[16, 16]}>
-                <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Feed')}>
-                        Feed
-                    </Button>
-                </Col>
-                <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Pump')}>
-                        Pump
-                    </Button>
-                </Col>
-                <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Sleep')}>
-                        Sleep
-                    </Button>
-                </Col>
-                <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Wake')}>
-                        Wake
-                    </Button>
-                </Col>
-                <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Pee')}>
-                        Pee
-                    </Button>
-                </Col>
-                <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry('Poo')}>
-                        Poo
-                    </Button>
-                </Col>
-            </Row>
 
             <Row>
                 <Col span={24}>
                     <Table
-                        dataSource={data}
+                        dataSource={data.filter((entry) => entry.type === 'Feed' || entry.type === 'Pump')}
                         columns={[
                             {
                                 title: 'Type',
