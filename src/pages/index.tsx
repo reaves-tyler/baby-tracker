@@ -9,6 +9,9 @@ import { useEffect, useState } from 'react';
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function Index() {
+    const [feeds, setFeeds] = useState(0);
+    const [pees, setPees] = useState(0);
+    const [poos, setPoos] = useState(0);
     const { data, error, mutate } = useSwr('/api/tracker', fetcher);
 
     if (error) return <div>Failed to load data</div>;
@@ -26,14 +29,14 @@ export default function Index() {
         mutate();
     };
 
-    const [feeds, setFeeds] = useState(0);
-    const [pees, setPees] = useState(0);
-    const [poos, setPoos] = useState(0);
-
-    useEffect(() => {
+    const updateTotals = () => {
         setFeeds(data.filter((entry) => entry.type === ItemTypes.Feed && within24Hours(entry.time)).length);
         setPees(data.filter((entry) => entry.type === ItemTypes.Pee && within24Hours(entry.time)).length);
         setPoos(data.filter((entry) => entry.type === ItemTypes.Poo && within24Hours(entry.time)).length);
+    };
+
+    useEffect(() => {
+        updateTotals();
     }, [data]);
 
     return (
