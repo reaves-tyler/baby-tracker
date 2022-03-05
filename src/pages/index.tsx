@@ -14,6 +14,12 @@ export default function Index() {
     const [poos, setPoos] = useState(0);
     const { data, error, mutate } = useSwr('/api/tracker', fetcher);
 
+    useEffect(() => {
+        setFeeds(data?.filter((entry) => entry.type === ItemTypes.Feed && within24Hours(entry.time)).length);
+        setPees(data?.filter((entry) => entry.type === ItemTypes.Pee && within24Hours(entry.time)).length);
+        setPoos(data?.filter((entry) => entry.type === ItemTypes.Poo && within24Hours(entry.time)).length);
+    }, [data]);
+
     if (error) return <div>Failed to load data</div>;
     if (!data) return <div>Loading...</div>;
 
@@ -28,16 +34,6 @@ export default function Index() {
         await axios.post('/api/tracker/new', { type: type });
         mutate();
     };
-
-    const updateTotals = () => {
-        setFeeds(data.filter((entry) => entry.type === ItemTypes.Feed && within24Hours(entry.time)).length);
-        setPees(data.filter((entry) => entry.type === ItemTypes.Pee && within24Hours(entry.time)).length);
-        setPoos(data.filter((entry) => entry.type === ItemTypes.Poo && within24Hours(entry.time)).length);
-    };
-
-    useEffect(() => {
-        updateTotals();
-    }, [data]);
 
     return (
         <>
