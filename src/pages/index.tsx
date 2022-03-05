@@ -1,9 +1,10 @@
 import useSwr from 'swr';
-import { Row, Button, Table, Col } from 'antd';
+import { Row, Button, Table, Col, Card } from 'antd';
 import axios from 'axios';
-import { timeAgo } from '../utils/time';
+import { timeAgo, within24Hours } from '../utils/time';
 import { SiteMenu } from '../components/SiteMenu';
 import { ItemTypes } from '../types/types';
+import { useEffect, useState } from 'react';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -25,9 +26,36 @@ export default function Index() {
         mutate();
     };
 
+    const [feeds, setFeeds] = useState(0);
+    const [pees, setPees] = useState(0);
+    const [poos, setPoos] = useState(0);
+
+    useEffect(() => {
+        setFeeds(data.filter((entry) => entry.type === ItemTypes.Feed && within24Hours(entry.time)).length);
+        setPees(data.filter((entry) => entry.type === ItemTypes.Pee && within24Hours(entry.time)).length);
+        setPoos(data.filter((entry) => entry.type === ItemTypes.Poo && within24Hours(entry.time)).length);
+    }, [data]);
+
     return (
         <>
             <SiteMenu />
+            <Row gutter={24}>
+                <Col span={8}>
+                    <Card size='small' bordered={true}>
+                        Feeds {feeds}
+                    </Card>
+                </Col>
+                <Col span={8}>
+                    <Card size='small' bordered={true}>
+                        Pees {pees}
+                    </Card>
+                </Col>
+                <Col span={8}>
+                    <Card size='small' bordered={true}>
+                        Poos {poos}
+                    </Card>
+                </Col>
+            </Row>
             <br />
             <Row justify='center' gutter={[16, 16]}>
                 <Col span={12}>

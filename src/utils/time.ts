@@ -77,3 +77,16 @@ export const timeAgo = (dateParam) => {
 
     return getFormattedDate(date); // 10. January 2017. at 10:20
 };
+
+// --- Main function
+export const within24Hours = (dateParam) => {
+    if (!dateParam) {
+        return null;
+    }
+
+    const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
+    const today: any = new Date();
+    const isToday = today.toDateString() === date.toDateString();
+
+    return isToday;
+};
