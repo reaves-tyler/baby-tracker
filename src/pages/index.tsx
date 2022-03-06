@@ -1,5 +1,5 @@
 import useSwr from 'swr';
-import { Row, Button, Table, Col, Card } from 'antd';
+import { Row, Button, Table, Col, Card, BackTop } from 'antd';
 import axios from 'axios';
 import { timeAgo, within24Hours } from '../utils/time';
 import { SiteMenu } from '../components/SiteMenu';
@@ -37,6 +37,7 @@ export default function Index() {
 
     return (
         <>
+            <BackTop />
             <SiteMenu />
             <Row gutter={24}>
                 <Col span={8}>
@@ -123,6 +124,7 @@ export default function Index() {
                                 ),
                             },
                         ]}
+                        pagination={false}
                     />
                 </Col>
             </Row>

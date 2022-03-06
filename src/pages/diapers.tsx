@@ -1,5 +1,5 @@
 import useSwr from 'swr';
-import { Row, Button, Table, Col } from 'antd';
+import { Row, Button, Table, Col, BackTop } from 'antd';
 import axios from 'axios';
 import { timeAgo } from '../utils/time';
 import { SiteMenu } from '../components/SiteMenu';
@@ -22,9 +22,9 @@ export default function Diapers() {
 
     return (
         <>
+            <BackTop />
             <SiteMenu />
             <br />
-
             <Row>
                 <Col span={24}>
                     <Table
@@ -61,6 +61,7 @@ export default function Diapers() {
                                 ),
                             },
                         ]}
+                        pagination={false}
                     />
                 </Col>
             </Row>
