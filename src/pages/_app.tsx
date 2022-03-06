@@ -1,4 +1,4 @@
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.dark.min.css';
 // import '../styles/vars.css';
 // import '../styles/global.css';
 import { SessionProvider } from 'next-auth/react';
