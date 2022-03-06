@@ -84,9 +84,8 @@ export const within24Hours = (dateParam) => {
         return null;
     }
 
-    const date = typeof dateParam === 'object' ? dateParam : new Date(dateParam);
-    const today: any = new Date();
-    const isToday = today.toDateString() === date.toDateString();
+    const msBetweenDates = Math.abs(new Date(dateParam).getTime() - new Date().getTime());
+    const hoursBetweenDates = msBetweenDates / (60 * 60 * 1000);
 
-    return isToday;
+    return hoursBetweenDates < 24;
 };
