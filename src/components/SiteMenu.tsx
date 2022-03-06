@@ -19,7 +19,7 @@ export const SiteMenu = () => {
                 <Menu.Item key='/food'>
                     <Link href='/food'>Food</Link>
                 </Menu.Item>
-                <Menu.Item>
+                <Menu.Item key='/login'>
                     {session ? (
                         <Button onClick={() => signOut()}>Sign out</Button>
                     ) : (
