@@ -2,7 +2,7 @@ import { Button, Col, Row, Table } from 'antd';
 import axios from 'axios';
 import useSwr from 'swr';
 import { Item } from '../types/types';
-import { timeAgo, timeDifference } from '../utils/time';
+import { timeAgo } from '../utils/time';
 
 export const DataTable = (props: { data: Item[] }) => {
     const fetcher = (url) => fetch(url).then((res) => res.json());
