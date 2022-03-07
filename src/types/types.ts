@@ -1,3 +1,10 @@
+export interface Item {
+    _id: string;
+    __v: number;
+    time: string;
+    type: ItemTypes;
+}
+
 export const enum ItemTypes {
     Feed = 'Feed',
     Pump = 'Pump',

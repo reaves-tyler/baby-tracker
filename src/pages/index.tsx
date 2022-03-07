@@ -1,10 +1,11 @@
 import useSwr from 'swr';
-import { Row, Button, Table, Col, Card, BackTop } from 'antd';
+import { Row, Button, Col, Card, BackTop } from 'antd';
 import axios from 'axios';
-import { timeAgo, within24Hours } from '../utils/time';
+import { within24Hours } from '../utils/time';
 import { SiteMenu } from '../components/SiteMenu';
 import { ItemTypes } from '../types/types';
 import { useEffect, useState } from 'react';
+import { DataTable } from '../components/DataTable';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -22,13 +23,6 @@ export default function Index() {
 
     if (error) return <div>Failed to load data</div>;
     if (!data) return <div>Loading...</div>;
-
-    const removeEntry = async (e, _id) => {
-        if (confirm('Are you sure you want to delete this entry?')) {
-            await axios.delete(`/api/tracker/${_id}`);
-            mutate();
-        }
-    };
 
     const addEntry = async (type) => {
         await axios.post('/api/tracker/new', { type: type });
@@ -89,45 +83,7 @@ export default function Index() {
                     </Button>
                 </Col>
             </Row>
-
-            <Row>
-                <Col span={24}>
-                    <Table
-                        dataSource={data}
-                        columns={[
-                            {
-                                title: 'Type',
-                                dataIndex: 'type',
-                                key: 'type',
-                            },
-                            {
-                                title: 'Time',
-                                dataIndex: 'time',
-                                key: 'time',
-                                render: (date: string) =>
-                                    `${new Date(date).toLocaleDateString()} ${new Date(date).toLocaleTimeString()}`,
-                            },
-                            {
-                                title: 'Time since',
-                                dataIndex: 'time',
-                                key: 'time',
-                                render: (date: string) => ` ${timeAgo(date)}`,
-                            },
-                            {
-                                title: 'Remove',
-                                dataIndex: '_id',
-                                key: '_id',
-                                render: (_id: string) => (
-                                    <Button danger onClick={(e) => removeEntry(e, _id)}>
-                                        X
-                                    </Button>
-                                ),
-                            },
-                        ]}
-                        pagination={false}
-                    />
-                </Col>
-            </Row>
+            <DataTable data={data} />
         </>
     );
 }
