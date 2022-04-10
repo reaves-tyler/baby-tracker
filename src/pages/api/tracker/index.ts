@@ -5,7 +5,10 @@ const handler = async (req, res) => {
     if (req.method === 'GET') {
         const items = await Tracker.find();
 
-        return res.status(200).send(items.reverse());
+        items.reverse();
+        const limitedItems = items.slice(0, 30);
+
+        return res.status(200).send(limitedItems);
     } else {
         res.status(422).send('req_method_not_supported');
     }
