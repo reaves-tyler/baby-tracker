@@ -52,32 +52,17 @@ export default function Index() {
             </Row>
             <br />
             <Row justify='center' gutter={[16, 16]}>
-                <Col span={12}>
+                <Col span={24}>
                     <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Feed)}>
                         {ItemTypes.Feed}
                     </Button>
                 </Col>
-                <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Pump)}>
-                        {ItemTypes.Pump}
-                    </Button>
-                </Col>
-                <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Sleep)}>
-                        {ItemTypes.Sleep}
-                    </Button>
-                </Col>
-                <Col span={12}>
-                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Wake)}>
-                        {ItemTypes.Wake}
-                    </Button>
-                </Col>
-                <Col span={12}>
+                <Col span={24}>
                     <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Pee)}>
                         {ItemTypes.Pee}
                     </Button>
                 </Col>
-                <Col span={12}>
+                <Col span={24}>
                     <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Poo)}>
                         {ItemTypes.Poo}
                     </Button>

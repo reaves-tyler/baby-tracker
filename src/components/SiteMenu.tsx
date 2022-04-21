@@ -13,12 +13,6 @@ export const SiteMenu = () => {
                 <Menu.Item key='/'>
                     <Link href='/'>Home</Link>
                 </Menu.Item>
-                <Menu.Item key='/diapers'>
-                    <Link href='/diapers'>Diapers</Link>
-                </Menu.Item>
-                <Menu.Item key='/food'>
-                    <Link href='/food'>Food</Link>
-                </Menu.Item>
                 <Menu.Item key='/login'>
                     {session ? (
                         <Button onClick={() => signOut()}>Sign out</Button>
