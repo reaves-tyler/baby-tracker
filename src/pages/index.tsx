@@ -67,6 +67,16 @@ export default function Index() {
                         {ItemTypes.Poo}
                     </Button>
                 </Col>
+                <Col span={24}>
+                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Sleep)}>
+                        {ItemTypes.Sleep}
+                    </Button>
+                </Col>
+                <Col span={24}>
+                    <Button type='primary' size='large' block onClick={() => addEntry(ItemTypes.Wake)}>
+                        {ItemTypes.Wake}
+                    </Button>
+                </Col>
             </Row>
             <DataTable data={data} />
         </>
