@@ -16,7 +16,7 @@ export const SiteMenu = () => {
                 <Menu.Item key='/daily-dashboard'>
                     <Link href='https://daily-dashboard-dusky.vercel.app/'>Daily Dashboard</Link>
                 </Menu.Item>
-                <Menu.Item key='/login'>
+                <Menu.Item key='/login' style={{ marginLeft: 'auto' }}>
                     {session ? (
                         <Button onClick={() => signOut()}>Sign out</Button>
                     ) : (
